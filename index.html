@@ -1,1 +1,206 @@
-Hello World
+
+<!DOCTYPE html>
+<html class="dark" lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>TomTen | Leise, zuverlässige digitale Lösungen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3b82f6",
+                        "primary-dim": "#1e40af",
+                        "background-dark": "#0f1115",
+                        "surface-dark": "#161b22",
+                        "slate-med": "#94a3b8",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f1115; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+      }
+    }
+    </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-background-dark text-slate-200 font-display antialiased selection:bg-primary/30">
+    <div class="relative min-h-screen flex flex-col md:flex-row max-w-[1600px] mx-auto bg-background-dark shadow-2xl my-0 md:my-4 rounded-none md:rounded-2xl overflow-hidden border border-gray-800">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-72 flex-shrink-0 bg-surface-dark border-b md:border-b-0 md:border-r border-gray-800 flex flex-col sticky top-0 md:h-[calc(100vh-2rem)] z-40">
+            <div class="p-8 pb-4">
+                <div class="flex items-center gap-4">
+                    <div class="relative w-12 h-12 flex items-center justify-center">
+                        <img src="logo.png" alt="TomTen Logo" class="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]"/>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-white text-xl font-bold tracking-tight">TomTen</h1>
+                        <p class="text-slate-med text-xs uppercase tracking-widest">Digitale Lösungen</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 flex flex-col gap-1">
+                <button data-scroll="start" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
+                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">home</span>
+                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Start</span>
+                </button>
+                <button data-scroll="about" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
+                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">person</span>
+                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Über TomTen</span>
+                </button>
+                <button data-scroll="services" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
+                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">layers</span>
+                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Leistungen</span>
+                </button>
+                <button data-scroll="portfolio" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
+                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">folder_open</span>
+                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Portfolio</span>
+                </button>
+                <button data-scroll="contact" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
+                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">mail</span>
+                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Kontakt</span>
+                </button>
+            </nav>
+            <div class="p-8 mt-auto border-t border-gray-800 md:border-0 text-xs text-slate-med leading-relaxed">
+                © 2024 TomTen<br/>Barrierearm gestaltet.<br/>
+                <a class="hover:text-primary underline decoration-slate-700" href="#">Impressum</a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 bg-background-dark h-full md:h-[calc(100vh-2rem)] md:overflow-y-auto relative scroll-smooth">
+            <div class="max-w-4xl mx-auto px-6 md:px-16 py-12 md:py-24 flex flex-col gap-24 md:gap-32">
+                
+                <!-- Hero Section -->
+                <section class="flex flex-col gap-8 min-h-[50vh] justify-center fade-in" id="start">
+                    <div class="space-y-6">
+                        <span class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider border border-primary/20">Verfügbar für neue Projekte</span>
+                        <h2 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">Leise, zuverlässige digitale Lösungen.</h2>
+                        <p class="text-slate-med text-lg md:text-xl max-w-2xl">IT-Support und Entwicklung für soziale Organisationen, Bildung und Verwaltung. Technik, die einfach funktioniert.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button data-scroll="contact" class="px-8 py-3 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-200 transition-colors">Kontakt</button>
+                        <button data-scroll="portfolio" class="px-8 py-3 border border-gray-600 text-white font-medium rounded-lg hover:border-white transition-colors">Arbeiten ansehen</button>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section class="space-y-8 scroll-mt-24" id="about">
+                    <div class="border-l-4 border-primary pl-4"><h2 class="text-white text-2xl font-bold">Über TomTen</h2></div>
+                    <div class="grid md:grid-cols-12 gap-8">
+                        <div class="md:col-span-8 space-y-4 text-gray-300 text-lg leading-relaxed">
+                            <p>Mein Name ist Thomas. Als Entwickler fokussiere ich mich auf Stabilität und Barrierefreiheit. TomTen bietet IT-Dienstleistungen ohne digitalen Lärm.</p>
+                            <p class="text-slate-med text-base">Ich pflege Systeme, die datensparsam und langlebig sind, damit Sie sich auf Ihre Kernaufgaben konzentrieren können.</p>
+                        </div>
+                        <div class="md:col-span-4 bg-surface-dark border border-gray-800 p-6 rounded-xl space-y-4 shadow-lg">
+                            <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">verified</span><span class="text-sm text-gray-200">Experten-Know-how</span></div>
+                            <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">public</span><span class="text-sm text-gray-200">Remote Support</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Services Section -->
+                <section class="space-y-8 scroll-mt-24" id="services">
+                    <div class="border-l-4 border-primary pl-4"><h2 class="text-white text-2xl font-bold">Leistungen</h2></div>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl group hover:border-primary transition-all">
+                            <span class="material-symbols-outlined text-primary text-3xl mb-4">settings_suggest</span>
+                            <h3 class="text-white font-bold mb-2">IT-Wartung</h3>
+                            <p class="text-slate-med text-sm">Server-Updates, Monitoring und Sicherheit.</p>
+                        </div>
+                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl group hover:border-primary transition-all">
+                            <span class="material-symbols-outlined text-primary text-3xl mb-4">account_tree</span>
+                            <h3 class="text-white font-bold mb-2">Automatisierung</h3>
+                            <p class="text-slate-med text-sm">Effiziente Workflows für NGOs.</p>
+                        </div>
+                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl group hover:border-primary transition-all">
+                            <span class="material-symbols-outlined text-primary text-3xl mb-4">accessibility</span>
+                            <h3 class="text-white font-bold mb-2">Barrierefreiheit</h3>
+                            <p class="text-slate-med text-sm">Webseiten nach BITV 2.0 Standard.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Portfolio Section -->
+                <section class="space-y-8 scroll-mt-24" id="portfolio">
+                    <div class="border-l-4 border-primary pl-4"><h2 class="text-white text-2xl font-bold">Projekte</h2></div>
+                    <div class="space-y-4">
+                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl flex justify-between items-center group cursor-pointer hover:bg-gray-800 transition-colors">
+                            <div><h4 class="text-white font-bold group-hover:text-primary transition-colors">Bildungsportal Nord</h4><p class="text-sm text-slate-med">Barrierefreier Relaunch 2023</p></div>
+                            <span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+                        </div>
+                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl flex justify-between items-center group cursor-pointer hover:bg-gray-800 transition-colors">
+                            <div><h4 class="text-white font-bold group-hover:text-primary transition-colors">NGO-Dashboard</h4><p class="text-sm text-slate-med">Prozessoptimierung 2022</p></div>
+                            <span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section class="pb-24 scroll-mt-24" id="contact">
+                    <div class="border-l-4 border-primary pl-4 mb-8"><h2 class="text-white text-2xl font-bold">Kontakt</h2></div>
+                    <a href="mailto:hallo@tomten-digital.de" class="inline-flex items-center gap-4 bg-white text-gray-900 px-8 py-6 rounded-xl text-xl font-bold hover:scale-[1.02] transition-transform">
+                        hallo@tomten-digital.de <span class="material-symbols-outlined">send</span>
+                    </a>
+                </section>
+            </div>
+        </main>
+
+        <!-- AI Consultant Modal -->
+        <div id="ai-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+            <div class="bg-surface-dark border border-gray-700 w-full max-w-2xl h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+                <div class="p-4 border-b border-gray-700 flex justify-between items-center bg-gray-800/50">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-2xl">psychology</span>
+                        <div><h3 class="text-white font-bold text-sm">TomTen KI-Beratung</h3><p class="text-[10px] text-slate-med uppercase tracking-widest">Digital-Strategie</p></div>
+                    </div>
+                    <button id="close-ai" class="text-gray-400 hover:text-white transition-colors"><span class="material-symbols-outlined">close</span></button>
+                </div>
+                <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-900/20">
+                    <div class="flex justify-start"><div class="max-w-[85%] p-3 rounded-2xl text-sm bg-gray-800 text-gray-200 rounded-tl-none border border-gray-700">Moin! Ich bin der KI-Berater von TomTen. Wie kann ich Ihrem Projekt helfen?</div></div>
+                </div>
+                <div class="p-4 border-t border-gray-700 bg-gray-800/30">
+                    <div class="flex gap-2">
+                        <input id="chat-input" type="text" placeholder="Ihre Frage..." class="flex-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition-colors"/>
+                        <button id="send-btn" class="bg-primary text-white p-2 rounded-xl hover:bg-primary-dim transition-colors"><span class="material-symbols-outlined">send</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button id="open-ai" class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50">
+            <span class="material-symbols-outlined text-3xl">psychology_alt</span>
+        </button>
+    </div>
+
+    <!-- Main Logic -->
+    <script type="module" src="index.js"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
