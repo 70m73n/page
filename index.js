@@ -44,9 +44,9 @@ const appendMessage = (role, text) => {
     
     const bubble = document.createElement('div');
     bubble.className = `max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed ${
-        role === 'user' 
-        ? 'bg-primary text-white rounded-tr-none shadow-md' 
-        : 'bg-gray-800 text-gray-200 rounded-tl-none border border-gray-700 shadow-sm'
+        role === 'user'
+        ? 'bg-primary text-white rounded-tr-none shadow-soft'
+        : 'bg-white text-ink rounded-tl-none border border-line shadow-soft'
     }`;
     bubble.textContent = text;
     
@@ -60,7 +60,7 @@ const showLoading = () => {
     loader.id = 'chat-loader';
     loader.className = 'flex justify-start';
     loader.innerHTML = `
-        <div class="bg-gray-800 p-3 rounded-2xl rounded-tl-none border border-gray-700 flex gap-1">
+        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-line flex gap-1 shadow-soft">
             <div class="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce"></div>
             <div class="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
             <div class="w-1.5 h-1.5 bg-primary/80 rounded-full animate-bounce [animation-delay:-0.3s]"></div>

@@ -1,27 +1,35 @@
-
 <!DOCTYPE html>
-<html class="dark" lang="de">
+<html lang="de">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>TomTen | Leise, zuverlässige digitale Lösungen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <title>TomTen | Digitale Lösungen mit leiser Wirkung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#3b82f6",
-                        "primary-dim": "#1e40af",
-                        "background-dark": "#0f1115",
-                        "surface-dark": "#161b22",
-                        "slate-med": "#94a3b8",
+                        ink: "#0b1f2a",
+                        "ink-soft": "#1f3847",
+                        paper: "#fbf6ee",
+                        sand: "#f2e8d9",
+                        line: "#e3d6c4",
+                        coral: "#ff6b4a",
+                        teal: "#2fb5a6",
+                        sun: "#ffd166",
+                        primary: "#ff6b4a",
+                        "primary-dark": "#e65436"
                     },
                     fontFamily: {
-                        "display": ["Public Sans", "sans-serif"]
+                        display: ["Fraunces", "serif"],
+                        sans: ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        soft: "0 12px 30px rgba(11, 31, 42, 0.12)",
+                        lift: "0 20px 60px rgba(11, 31, 42, 0.18)"
                     }
                 },
             },
@@ -29,14 +37,42 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
+        body { color-scheme: light; }
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f1115; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        ::-webkit-scrollbar-track { background: #f2e8d9; }
+        ::-webkit-scrollbar-thumb { background: #cdbda7; border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b3a28c; }
+        .bg-grid {
+            background-image:
+                linear-gradient(rgba(11, 31, 42, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(11, 31, 42, 0.06) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeRise 0.9s ease forwards;
+        }
+        .delay-1 { animation-delay: 0.12s; }
+        .delay-2 { animation-delay: 0.24s; }
+        .delay-3 { animation-delay: 0.36s; }
+        .delay-4 { animation-delay: 0.48s; }
+        .float-slow { animation: float 7s ease-in-out infinite; }
+        @keyframes fadeRise {
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .float-slow {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
     <script type="importmap">
@@ -46,261 +82,408 @@
       }
     }
     </script>
-<link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-background-dark text-slate-200 font-display antialiased selection:bg-primary/30">
-    <div class="relative min-h-screen flex flex-col md:flex-row max-w-[1600px] mx-auto bg-background-dark shadow-2xl my-0 md:my-4 rounded-none md:rounded-2xl overflow-hidden border border-gray-800">
-        
-        <!-- Sidebar Navigation -->
-        <aside class="w-full md:w-72 flex-shrink-0 bg-surface-dark border-b md:border-b-0 md:border-r border-gray-800 flex flex-col sticky top-0 md:h-[calc(100vh-2rem)] z-40">
-            <div class="p-8 pb-4">
+<body class="bg-paper text-ink font-sans antialiased selection:bg-coral/20 selection:text-ink">
+    <div class="relative min-h-screen overflow-hidden">
+        <div class="absolute inset-0 -z-10 bg-grid opacity-40"></div>
+        <div class="pointer-events-none absolute -top-32 right-0 h-72 w-72 rounded-full bg-coral/25 blur-3xl"></div>
+        <div class="pointer-events-none absolute top-1/3 -left-40 h-96 w-96 rounded-full bg-teal/20 blur-3xl"></div>
+        <div class="pointer-events-none absolute bottom-0 right-[-10%] h-80 w-80 rounded-full bg-sun/30 blur-3xl"></div>
+
+        <header class="sticky top-0 z-40 border-b border-line/70 bg-paper/80 backdrop-blur">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
                 <div class="flex items-center gap-3">
-                    <div class="relative w-16 h-16 flex items-center justify-center">
-                        <img src="logo.png" alt="TomTen Logo" class="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]"/>
+                    <div class="h-11 w-11 rounded-2xl bg-transparent text-paper flex items-center justify-center overflow-hidden shadow-soft">
+                        <img src="logo.png" alt="TomTen Logo" class="h-8 w-8 object-contain"/>
                     </div>
-                    <div class="flex flex-col">
-                        <h1 class="text-white text-xl font-bold tracking-tight">TomTen</h1>
-                        <p class="text-slate-med text-xs uppercase tracking-widest">Digitale Lösungen</p>
+                    <div class="leading-none">
+                        <p class="font-display text-xl font-semibold">TomTen</p>
+                        <p class="text-[10px] uppercase tracking-[0.3em] text-ink-soft">Digitale Lösungen</p>
                     </div>
                 </div>
+                <nav class="hidden lg:flex items-center gap-2 text-sm font-medium text-ink-soft">
+                    <button type="button" data-scroll="start" class="px-4 py-2 rounded-full hover:text-ink hover:bg-white/70 transition">Start</button>
+                    <button type="button" data-scroll="about" class="px-4 py-2 rounded-full hover:text-ink hover:bg-white/70 transition">Über TomTen</button>
+                    <button type="button" data-scroll="services" class="px-4 py-2 rounded-full hover:text-ink hover:bg-white/70 transition">Leistungen</button>
+                    <button type="button" data-scroll="portfolio" class="px-4 py-2 rounded-full hover:text-ink hover:bg-white/70 transition">Projekte</button>
+                    <button type="button" data-scroll="contact" class="px-4 py-2 rounded-full hover:text-ink hover:bg-white/70 transition">Kontakt</button>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <button type="button" data-scroll="contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-ink text-paper text-sm font-semibold shadow-soft hover:bg-ink-soft transition">
+                        Projekt anfragen
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </button>
+                    <button type="button" class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-full border border-line text-ink hover:bg-white/70 transition">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
             </div>
-            <nav class="flex-1 px-4 py-6 flex flex-col gap-1">
-                <button data-scroll="start" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
-                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">home</span>
-                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Start</span>
-                </button>
-                <button data-scroll="about" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
-                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">person</span>
-                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Über TomTen</span>
-                </button>
-                <button data-scroll="services" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
-                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">layers</span>
-                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Was ich mache</span>
-                </button>
-                <button data-scroll="portfolio" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
-                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">folder_open</span>
-                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Portfolio</span>
-                </button>
-                <button data-scroll="contact" class="group flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-all text-left">
-                    <span class="material-symbols-outlined text-slate-med group-hover:text-primary transition-colors text-[20px]">mail</span>
-                    <span class="text-sm font-medium group-hover:text-primary transition-colors">Kontakt</span>
-                </button>
-            </nav>
-            <div class="p-8 mt-auto border-t border-gray-800 md:border-0 text-xs text-slate-med leading-relaxed">
-                © 2024 TomTen<br/>Barrierearm gestaltet.<br/>
-                <a class="hover:text-primary underline decoration-slate-700" href="#">Impressum</a>
-            </div>
-        </aside>
+        </header>
 
-        <!-- Main Content Area -->
-        <main class="flex-1 bg-background-dark h-full md:h-[calc(100vh-2rem)] md:overflow-y-auto relative scroll-smooth">
-            <div class="max-w-4xl mx-auto px-6 md:px-16 py-12 md:py-24 flex flex-col gap-24 md:gap-32">
-                
-                <!-- Hero Section -->
-                <section class="flex flex-col gap-8 min-h-[50vh] justify-center fade-in" id="start">
-                    <div class="space-y-6">
-                        <span class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider border border-primary/20">Verfügbar für neue Projekte</span>
-                        <h2 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">Leise, zuverlässige digitale Lösungen.</h2>
-                        <p class="text-slate-med text-lg md:text-xl max-w-2xl">IT-Support und Entwicklung für soziale Organisationen, Bildung und Verwaltung. Technik, die einfach funktioniert.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <button data-scroll="contact" class="px-8 py-3 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-200 transition-colors">Kontakt</button>
-                        <button data-scroll="portfolio" class="px-8 py-3 border border-gray-600 text-white font-medium rounded-lg hover:border-white transition-colors">Arbeiten ansehen</button>
-                    </div>
-                </section>
-
-                <!-- About Section -->
-                <section class="space-y-8 scroll-mt-24" id="about">
-                    <div class="border-l-4 border-primary pl-4"><h2 class="text-white text-2xl font-bold">Über TomTen</h2></div>
-                    <div class="grid md:grid-cols-12 gap-8">
-                        <div class="md:col-span-8 space-y-4 text-gray-300 text-lg leading-relaxed">
-                            <p>Ich unterstütze soziale Einrichtungen dabei, Digitalisierung, Automatisierung und Künstliche Intelligenz praxisnah und verantwortungsvoll einzusetzen.</p>
-                            <p>Gerade im sozialen Bereich sind Zeit, Personal und Ressourcen knapp. Gleichzeitig steigen Dokumentationspflichten, organisatorische Anforderungen und der Druck, effizienter zu arbeiten. Mein Ansatz setzt genau dort an: bei den realen Abläufen im Alltag. Ich schaue mir an, wie Arbeit tatsächlich passiert – und entwickle digitale Lösungen, die entlasten, statt zusätzliche Komplexität zu erzeugen.</p>
-                            <p class="text-slate-med text-base">Künstliche Intelligenz verstehe ich nicht als Ersatz für Fachlichkeit, Beziehung oder pädagogische Arbeit. Sie kann jedoch dabei helfen, administrative Aufgaben zu reduzieren, Informationen besser zu strukturieren und Prozesse stabiler zu machen. Automatisierung folgt bei mir klaren Regeln, bleibt nachvollziehbar und jederzeit steuerbar.</p>
-                            <p>Der Name TomTen steht für eine Arbeitsweise, die bewusst im Hintergrund bleibt. Ziel ist nicht maximale Sichtbarkeit, sondern zuverlässige Wirkung. Systeme sollen laufen, ohne ständig Aufmerksamkeit zu binden. Digitalisierung soll unterstützen, nicht dominieren.</p>
-                            <p class="text-slate-med text-base">Ich arbeite mit Leitungskräften und Organisationen im sozialen Bereich, die Technik nicht aus Prinzip einführen, sondern weil sie ihre Mitarbeitenden entlasten und ihre Arbeit nachhaltig sichern wollen. Mein Anspruch ist einfach: Digitale Lösungen müssen verständlich sein, in bestehende Strukturen passen und den Menschen dienen, die mit ihnen arbeiten.</p>
-                        </div>
-                        <div class="md:col-span-4 bg-surface-dark border border-gray-800 p-6 rounded-xl space-y-4 shadow-lg">
-                            <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">verified</span><span class="text-sm text-gray-200">Experten-Know-how</span></div>
-                            <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">public</span><span class="text-sm text-gray-200">Remote Support</span></div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Services Section -->
-                <section class="space-y-8 scroll-mt-24" id="services">
-                    <div class="border-l-4 border-primary pl-4"><h2 class="text-white text-2xl font-bold">Was ich mache</h2></div>
-                    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl group hover:border-primary transition-all">
-                            <span class="material-symbols-outlined text-primary text-3xl mb-4">widgets</span>
-                            <h3 class="text-white font-bold mb-2">Digitale Alltagslösungen</h3>
-                            <p class="text-slate-med text-sm">Kleine Web-Tools, die konkrete Probleme im Arbeitsalltag sozialer Einrichtungen pragmatisch lösen.</p>
-                        </div>
-                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl group hover:border-primary transition-all">
-                            <span class="material-symbols-outlined text-primary text-3xl mb-4">psychology</span>
-                            <h3 class="text-white font-bold mb-2">KI im pädagogischen Kontext</h3>
-                            <p class="text-slate-med text-sm">Sinnvolle Nutzung von KI zur Unterstützung von Fachkräften, ohne den Menschen aus dem Fokus zu verlieren.</p>
-                        </div>
-                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl group hover:border-primary transition-all">
-                            <span class="material-symbols-outlined text-primary text-3xl mb-4">school</span>
-                            <h3 class="text-white font-bold mb-2">Digitale Bildungsunterstützung</h3>
-                            <p class="text-slate-med text-sm">Werkzeuge zur Erstellung und Strukturierung von Lernmaterialien für Teilnehmende im Ausbildungsbereich.</p>
-                        </div>
-                        <div class="p-6 bg-surface-dark border border-gray-800 rounded-xl group hover:border-primary transition-all">
-                            <span class="material-symbols-outlined text-primary text-3xl mb-4">rocket_launch</span>
-                            <h3 class="text-white font-bold mb-2">Prototypen aus der Praxis</h3>
-                            <p class="text-slate-med text-sm">Funktionierende Lösungen zum Ausprobieren, Weiterdenken und Anpassen – direkt aus dem Arbeitsalltag heraus.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Portfolio Section -->
-                <section class="space-y-8 scroll-mt-24" id="portfolio">
-                    <div class="border-l-4 border-primary pl-4"><h2 class="text-white text-2xl font-bold">Projekte</h2></div>
-                    <div class="space-y-8">
-                        <div class="relative overflow-hidden rounded-2xl border border-gray-800/70 bg-gradient-to-br from-[#0f172a] via-[#0b1120] to-[#0f1629] shadow-2xl">
-                            <div class="absolute inset-0 pointer-events-none">
-                                <div class="absolute -left-16 -top-20 h-52 w-52 bg-primary/10 blur-3xl"></div>
-                                <div class="absolute right-[-60px] top-16 h-48 w-48 bg-indigo-500/10 blur-3xl"></div>
+        <main class="relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <section id="start" class="pt-12 lg:pt-20 pb-16 lg:pb-24 scroll-mt-24">
+                    <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
+                        <div class="space-y-8">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-line text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-soft reveal">
+                                <span class="h-2 w-2 bg-teal rounded-full"></span>
+                                Verfügbar für neue Projekte
                             </div>
-                            <div class="relative p-6 md:p-10 grid gap-10 lg:grid-cols-[1.2fr_1fr] items-start">
-                                <div class="space-y-6">
-                                    <div class="flex items-start gap-3">
-                                        <div class="h-12 w-12 rounded-xl bg-primary/15 border border-primary/25 text-primary flex items-center justify-center shadow-inner shadow-primary/10">
-                                            <span class="material-symbols-outlined text-xl">beach_access</span>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-white font-bold text-2xl leading-tight">Urlaubsrechner</h3>
-                                            <p class="text-slate-med text-sm">Web-App zur Berechnung des individuellen Urlaubsanspruchs</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-100 text-base leading-relaxed">Berechnet anteiligen Urlaub nach Monaten und Arbeitstagen, berücksichtigt Zusatzurlaub bei SBA, unterstützt zwei Zeiträume und läuft komplett offline als PWA.</p>
-                                    <ul class="space-y-3 text-sm text-slate-100">
-                                        <li class="flex items-start gap-3">
-                                            <span class="mt-2 h-2 w-2 rounded-full bg-white shadow-[0_0_0_5px_rgba(255,255,255,0.07)]"></span>
-                                            <span class="leading-relaxed text-slate-200">Szenarien: Eintritt/Austritt im Jahr, Wechsel der Arbeitszeit, SBA-Zusatzurlaub</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="mt-2 h-2 w-2 rounded-full bg-white shadow-[0_0_0_5px_rgba(255,255,255,0.07)]"></span>
-                                            <span class="leading-relaxed text-slate-200">Validierung: max. 12 Monate, keine Null-Werte, klare Fehlermeldungen</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="mt-2 h-2 w-2 rounded-full bg-white shadow-[0_0_0_5px_rgba(255,255,255,0.07)]"></span>
-                                            <span class="leading-relaxed text-slate-200">UX: Fixierter Header, direkte Ergebnisanzeige, Reset für neue Berechnungen</span>
-                                        </li>
-                                    </ul>
-                                    <div class="flex flex-wrap items-center gap-3 pt-1">
-                                        <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-primary/15 text-primary border border-primary/30 shadow-sm shadow-primary/20">Offline / PWA</span>
-                                        <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-gray-800/80 text-gray-200 border border-gray-700">HTML · JS · CSS</span>
-                                        <a class="text-primary text-sm underline underline-offset-4 decoration-primary/40 hover:text-white transition-colors" href="https://github.com/70m73n/urlaubsrechner" target="_blank" rel="noreferrer">Projekt ansehen</a>
-                                    </div>
+                            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] reveal delay-1">
+                                Digitale Infrastruktur, die im Hintergrund wirkt.
+                            </h1>
+                            <p class="text-lg text-ink-soft max-w-xl reveal delay-2">
+                                Pragmatische Tools, Automatisierung und KI-Assistenz für soziale Organisationen, Bildung und Verwaltung. Klar, nachvollziehbar und mit Fokus auf den Alltag.
+                            </p>
+                            <div class="flex flex-wrap gap-4 reveal delay-3">
+                                <button type="button" data-scroll="contact" class="px-6 py-3 rounded-full bg-ink text-paper text-sm font-semibold shadow-soft hover:bg-ink-soft transition">
+                                    Projekt anfragen
+                                </button>
+                                <button type="button" data-scroll="portfolio" class="px-6 py-3 rounded-full border border-ink/20 text-sm font-semibold text-ink hover:bg-white/70 transition">
+                                    Projekte ansehen
+                                </button>
+                            </div>
+                            <div class="flex flex-wrap gap-3 text-xs uppercase tracking-[0.2em] text-ink-soft reveal delay-4">
+                                <span class="px-3 py-1 rounded-full border border-line bg-white/70">Barrierearm</span>
+                                <span class="px-3 py-1 rounded-full border border-line bg-white/70">Local-first</span>
+                                <span class="px-3 py-1 rounded-full border border-line bg-white/70">Transparente Prozesse</span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="pointer-events-none absolute -top-6 -right-6 h-32 w-32 rounded-full bg-coral/30 blur-2xl"></div>
+                            <div class="pointer-events-none absolute -bottom-10 left-6 h-40 w-40 rounded-full bg-teal/20 blur-2xl"></div>
+                            <div class="relative bg-white/90 border border-line rounded-3xl p-6 shadow-lift float-slow">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-[11px] uppercase tracking-[0.3em] text-ink-soft">Projektboard</p>
+                                    <span class="px-2 py-1 text-[10px] font-semibold uppercase bg-sand text-ink-soft border border-line rounded-full">laufend</span>
                                 </div>
-                                <div class="space-y-3">
-                                    <div class="relative aspect-[4/3] rounded-2xl border border-dashed border-gray-700/70 bg-gradient-to-br from-gray-900/60 to-gray-800/30 overflow-hidden shadow-inner">
-                                        <img src="urlaubsrechner.png" alt="Screenshot Urlaubsrechner" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"/>
-                                        <div class="absolute inset-0 hidden bg-gradient-to-br from-gray-900/80 to-gray-800/60 text-slate-med text-sm flex items-center justify-center text-center px-4">
-                                            Screenshot wird angezeigt, sobald <span class="font-semibold text-gray-200 px-1">urlaubsrechner.png</span> im Projekt liegt.
+                                <div class="mt-6 space-y-4">
+                                    <div class="p-4 rounded-2xl border border-line bg-sand/70">
+                                        <div class="flex items-center justify-between">
+                                            <p class="font-semibold text-sm">Schichtplaner Pro</p>
+                                            <span class="text-[10px] uppercase text-ink-soft">Phase 2</span>
+                                        </div>
+                                        <p class="text-xs text-ink-soft mt-2">Tablet-Ansicht, klare Status-Workflows, barrierearme Steuerung.</p>
+                                    </div>
+                                    <div class="p-4 rounded-2xl border border-line bg-white shadow-soft">
+                                        <div class="flex items-center justify-between">
+                                            <p class="font-semibold text-sm">Förderantrags-Assistent</p>
+                                            <span class="text-[10px] uppercase text-ink-soft">Konzept</span>
+                                        </div>
+                                        <p class="text-xs text-ink-soft mt-2">Vorlagen, Validierung und ein sauberer Ablauf für Berichtswesen.</p>
+                                    </div>
+                                    <div class="p-4 rounded-2xl border border-line bg-white">
+                                        <div class="flex items-center justify-between">
+                                            <p class="font-semibold text-sm">Wartung &amp; Pflege</p>
+                                            <span class="text-[10px] uppercase text-ink-soft">laufend</span>
+                                        </div>
+                                        <div class="mt-3 h-2 w-full rounded-full bg-sand">
+                                            <div class="h-full w-[72%] rounded-full bg-teal"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="relative overflow-hidden rounded-2xl border border-gray-800/70 bg-gradient-to-br from-[#0f172a] via-[#0b1120] to-[#0f1629] shadow-2xl">
-                            <div class="absolute inset-0 pointer-events-none">
-                                <div class="absolute -left-20 top-10 h-56 w-56 bg-primary/12 blur-3xl"></div>
-                                <div class="absolute right-[-80px] bottom-6 h-48 w-48 bg-indigo-500/12 blur-3xl"></div>
-                            </div>
-                            <div class="relative p-6 md:p-10 grid gap-10 lg:grid-cols-[1.2fr_1fr] items-start">
-                                <div class="space-y-6">
-                                    <div class="flex items-start gap-3">
-                                        <div class="h-12 w-12 rounded-xl bg-primary/15 border border-primary/25 text-primary flex items-center justify-center shadow-inner shadow-primary/10">
-                                            <span class="material-symbols-outlined text-xl">dashboard_customize</span>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-white font-bold text-2xl leading-tight">reBoard</h3>
-                                            <p class="text-slate-med text-sm">Berichts- und Fristenboard für KÜ-Enden & Entwicklungsberichte</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-100 text-base leading-relaxed">Kanban-Board für Klient:innen mit automatischer Fristenkette, Archiv, Excel-Import und lokalen JSON-Daten – läuft komplett im Browser ohne Server.</p>
-                                    <ul class="space-y-3 text-sm text-slate-100">
-                                        <li class="flex items-start gap-3">
-                                            <span class="mt-2 h-2 w-2 rounded-full bg-white shadow-[0_0_0_5px_rgba(255,255,255,0.07)]"></span>
-                                            <span class="leading-relaxed text-slate-200">Board-Spalten: Offen, Fachkraft/AbtL, Sozialdienst, Kostenträger</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="mt-2 h-2 w-2 rounded-full bg-white shadow-[0_0_0_5px_rgba(255,255,255,0.07)]"></span>
-                                            <span class="leading-relaxed text-slate-200">Automatische Fristen (FAB/AL, SD, KT) inkl. Wochenendverschiebung und Warnungen</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="mt-2 h-2 w-2 rounded-full bg-white shadow-[0_0_0_5px_rgba(255,255,255,0.07)]"></span>
-                                            <span class="leading-relaxed text-slate-200">Import/Export: Excel-Zuordnung, PDF/Tabelle; Archiv mit Suche, Wiederherstellen, Bereinigen</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="mt-2 h-2 w-2 rounded-full bg-white shadow-[0_0_0_5px_rgba(255,255,255,0.07)]"></span>
-                                            <span class="leading-relaxed text-slate-200">Detailfenster: Postein-/ausgang, Notizen, Mail-Helfer, sofortige Speicherung</span>
-                                        </li>
-                                    </ul>
-                                    <div class="flex flex-wrap items-center gap-3 pt-1">
-                                        <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-primary/15 text-primary border border-primary/30 shadow-sm shadow-primary/20">Local-first</span>
-                                        <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-gray-800/80 text-gray-200 border border-gray-700">HTML · JS · CSS</span>
-                                        <span class="text-slate-med text-sm">Repo auf Anfrage</span>
-                                    </div>
-                                </div>
-                                <div class="space-y-3">
-                                    <div class="relative aspect-[4/3] rounded-2xl border border-dashed border-gray-700/70 bg-gradient-to-br from-gray-900/60 to-gray-800/30 flex items-center justify-center text-slate-200 text-sm shadow-inner">
-                                        <div class="flex flex-col items-center text-center gap-2">
-                                            <span class="material-symbols-outlined text-4xl text-slate-500">image</span>
-                                            <p class="text-base font-semibold">Screenshot-Platzhalter</p>
-                                            <span class="text-xs text-slate-500">Board-Ansicht folgt</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="absolute -bottom-6 left-6 bg-white border border-line rounded-2xl px-4 py-3 shadow-soft">
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-ink-soft">Status</p>
+                                <p class="text-sm font-semibold">Klar kommuniziert, jederzeit nachvollziehbar.</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Contact Section -->
-                <section class="pb-24 scroll-mt-24" id="contact">
-                    <div class="border-l-4 border-primary pl-4 mb-8"><h2 class="text-white text-2xl font-bold">Kontakt</h2></div>
-                    <a href="mailto:hallo@tomten-digital.de" class="inline-flex items-center gap-4 bg-white text-gray-900 px-8 py-6 rounded-xl text-xl font-bold hover:scale-[1.02] transition-transform">
-                        hallo@tomten-digital.de <span class="material-symbols-outlined">send</span>
-                    </a>
+                <section id="about" class="py-16 lg:py-24 scroll-mt-24">
+                    <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
+                        <div class="space-y-6">
+                            <p class="text-xs uppercase tracking-[0.3em] text-ink-soft">Über TomTen</p>
+                            <h2 class="font-display text-3xl md:text-4xl">Pragmatische Digitalisierung für soziale Organisationen.</h2>
+                            <p class="text-base md:text-lg text-ink-soft">
+                                Ich arbeite mit Teams, die keine Zeit für Buzzwords haben. Stattdessen zählt eine ruhige, verlässliche Infrastruktur, die Verwaltung entlastet und Menschen den Rücken frei hält.
+                            </p>
+                            <p class="text-ink-soft">
+                                Meine Lösungen entstehen aus den echten Abläufen im Alltag. KI dient als Assistenz, nicht als Ersatz. Automatisierung bleibt transparent, damit Entscheidungen nachvollziehbar bleiben.
+                            </p>
+                            <p class="text-ink-soft">
+                                Der Anspruch: weniger Reibung, klare Prozesse und digitale Werkzeuge, die sich in bestehende Strukturen einfügen.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white/90 border border-line rounded-3xl p-6 shadow-soft">
+                                <h3 class="font-semibold mb-4">Grundsätze</h3>
+                                <ul class="space-y-3 text-sm text-ink-soft">
+                                    <li class="flex gap-3">
+                                        <span class="material-symbols-outlined text-coral">verified</span>
+                                        <span>Barrierearme Bedienung für heterogene Teams.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="material-symbols-outlined text-coral">lock</span>
+                                        <span>Datenschutz und lokale Datenhaltung im Fokus.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="material-symbols-outlined text-coral">done_all</span>
+                                        <span>Klare Übergaben, dokumentiert und wartbar.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-ink text-paper rounded-3xl p-6 shadow-soft">
+                                <p class="text-xs uppercase tracking-[0.3em] text-paper/70">Arbeitsweise</p>
+                                <p class="mt-3 text-lg font-semibold">Leise im Hintergrund, zuverlässig im Betrieb.</p>
+                                <p class="mt-2 text-sm text-paper/80">Technik, die erst auffällt, wenn sie fehlt. Genau so soll sie sein.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="services" class="py-16 lg:py-24 scroll-mt-24">
+                    <div class="flex flex-wrap items-end justify-between gap-6">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.3em] text-ink-soft">Leistungen</p>
+                            <h2 class="font-display text-3xl md:text-4xl">Was ich mache</h2>
+                        </div>
+                        <p class="text-sm text-ink-soft max-w-md">
+                            Modular, klar definiert und ohne Overhead. Lösungen, die zu kleinen Teams und realen Budgets passen.
+                        </p>
+                    </div>
+                    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white border border-line rounded-3xl p-6 shadow-soft hover:shadow-lift transition">
+                            <span class="material-symbols-outlined text-3xl text-coral">widgets</span>
+                            <h3 class="mt-5 font-semibold">Digitale Alltagslösungen</h3>
+                            <p class="mt-3 text-sm text-ink-soft">Kleine Tools, die konkrete Engpässe in Abläufen pragmatisch lösen.</p>
+                        </div>
+                        <div class="bg-white border border-line rounded-3xl p-6 shadow-soft hover:shadow-lift transition">
+                            <span class="material-symbols-outlined text-3xl text-coral">psychology</span>
+                            <h3 class="mt-5 font-semibold">KI als Assistenz</h3>
+                            <p class="mt-3 text-sm text-ink-soft">Unterstützung für Dokumentation, Struktur und Entscheidungen, ohne Blackbox.</p>
+                        </div>
+                        <div class="bg-white border border-line rounded-3xl p-6 shadow-soft hover:shadow-lift transition">
+                            <span class="material-symbols-outlined text-3xl text-coral">shield</span>
+                            <h3 class="mt-5 font-semibold">Datenschutz &amp; Pflege</h3>
+                            <p class="mt-3 text-sm text-ink-soft">Audits, Updates und Wartung für stabile, langlebige Systeme.</p>
+                        </div>
+                        <div class="bg-white border border-line rounded-3xl p-6 shadow-soft hover:shadow-lift transition">
+                            <span class="material-symbols-outlined text-3xl text-coral">rocket_launch</span>
+                            <h3 class="mt-5 font-semibold">Prototypen aus der Praxis</h3>
+                            <p class="mt-3 text-sm text-ink-soft">Schnelle MVPs, die testen, ob eine Idee im Alltag funktioniert.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="portfolio" class="py-16 lg:py-24 scroll-mt-24">
+                    <div class="flex flex-wrap items-end justify-between gap-6">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.3em] text-ink-soft">Aus der Praxis</p>
+                            <h2 class="font-display text-3xl md:text-4xl">Projekte</h2>
+                        </div>
+                        <button type="button" data-scroll="contact" class="px-4 py-2 rounded-full border border-line text-sm font-semibold text-ink hover:bg-white/70 transition">
+                            Zusammenarbeit anfragen
+                        </button>
+                    </div>
+                    <div class="mt-10 space-y-10">
+                        <article class="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 bg-white border border-line rounded-3xl p-6 md:p-10 shadow-soft">
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <span class="h-12 w-12 rounded-2xl bg-sand text-ink flex items-center justify-center border border-line">
+                                        <span class="material-symbols-outlined">beach_access</span>
+                                    </span>
+                                    <div>
+                                        <h3 class="font-display text-2xl">Urlaubsrechner</h3>
+                                        <p class="text-sm text-ink-soft">Web-App zur Berechnung des individuellen Urlaubsanspruchs.</p>
+                                    </div>
+                                </div>
+                                <p class="text-ink-soft">
+                                    Berechnet anteiligen Urlaub nach Monaten und Arbeitstagen, berücksichtigt Zusatzurlaub und bleibt komplett offline nutzbar.
+                                </p>
+                                <ul class="space-y-3 text-sm text-ink-soft">
+                                    <li class="flex items-start gap-3">
+                                        <span class="mt-2 h-2 w-2 rounded-full bg-coral"></span>
+                                        <span>Eintritt/Austritt, Wechsel der Arbeitszeit und SBA-Zusatzurlaub.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="mt-2 h-2 w-2 rounded-full bg-coral"></span>
+                                        <span>Validierung mit klaren Hinweisen und nachvollziehbaren Ergebnissen.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="mt-2 h-2 w-2 rounded-full bg-coral"></span>
+                                        <span>UX mit direkter Ergebnisanzeige und schneller Neu-Berechnung.</span>
+                                    </li>
+                                </ul>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-sand text-ink border border-line">Offline / PWA</span>
+                                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-white text-ink border border-line">HTML · JS · CSS</span>
+                                    <a class="text-sm font-semibold text-ink underline underline-offset-4 decoration-coral/50 hover:text-coral transition" href="https://github.com/70m73n/urlaubsrechner" target="_blank" rel="noreferrer">Projekt ansehen</a>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="relative aspect-[4/3] rounded-2xl border border-line overflow-hidden bg-sand">
+                                    <img src="urlaubsrechner.png" alt="Screenshot Urlaubsrechner" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"/>
+                                    <div class="absolute inset-0 hidden bg-sand text-ink-soft text-sm flex items-center justify-center text-center px-4">
+                                        Screenshot wird angezeigt, sobald <span class="font-semibold text-ink px-1">urlaubsrechner.png</span> im Projekt liegt.
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-ink-soft">
+                                    <span>Local-first</span>
+                                    <span>Datenschutz</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 bg-white border border-line rounded-3xl p-6 md:p-10 shadow-soft">
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <span class="h-12 w-12 rounded-2xl bg-sand text-ink flex items-center justify-center border border-line">
+                                        <span class="material-symbols-outlined">dashboard_customize</span>
+                                    </span>
+                                    <div>
+                                        <h3 class="font-display text-2xl">reBoard</h3>
+                                        <p class="text-sm text-ink-soft">Berichts- und Fristenboard für KÜ-Enden &amp; Entwicklungsberichte.</p>
+                                    </div>
+                                </div>
+                                <p class="text-ink-soft">
+                                    Kanban-Board für Klient:innen mit automatischer Fristenkette, Archiv, Import und lokalen JSON-Daten – komplett im Browser.
+                                </p>
+                                <ul class="space-y-3 text-sm text-ink-soft">
+                                    <li class="flex items-start gap-3">
+                                        <span class="mt-2 h-2 w-2 rounded-full bg-coral"></span>
+                                        <span>Automatische Fristen inkl. Wochenendverschiebung und Warnungen.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="mt-2 h-2 w-2 rounded-full bg-coral"></span>
+                                        <span>Excel-Import, PDF-Export, Archiv mit Suche und Wiederherstellung.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="mt-2 h-2 w-2 rounded-full bg-coral"></span>
+                                        <span>Detailfenster mit Notizen, Mail-Helfer und Sofortspeicherung.</span>
+                                    </li>
+                                </ul>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-sand text-ink border border-line">Local-first</span>
+                                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-white text-ink border border-line">HTML · JS · CSS</span>
+                                    <span class="text-sm text-ink-soft">Repo auf Anfrage</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="relative aspect-[4/3] rounded-2xl border border-line overflow-hidden bg-sand flex items-center justify-center text-ink-soft text-sm">
+                                    <div class="flex flex-col items-center gap-2 text-center">
+                                        <span class="material-symbols-outlined text-4xl text-ink-soft">image</span>
+                                        <p class="font-semibold">Screenshot folgt</p>
+                                        <span class="text-xs text-ink-soft">Board-Ansicht in Arbeit</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-ink-soft">
+                                    <span>Prozessklarheit</span>
+                                    <span>Kontrolle</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="py-16 lg:py-24">
+                    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
+                        <div class="space-y-4">
+                            <p class="text-xs uppercase tracking-[0.3em] text-ink-soft">Zusammenarbeit</p>
+                            <h2 class="font-display text-3xl md:text-4xl">So läuft ein Projekt ab.</h2>
+                            <p class="text-ink-soft">Klare Schritte, damit du jederzeit weißt, wo das Projekt steht.</p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="h-10 w-10 rounded-full bg-ink text-paper flex items-center justify-center text-sm font-semibold">1</div>
+                                <div>
+                                    <h3 class="font-semibold">Audit &amp; Zielbild</h3>
+                                    <p class="text-sm text-ink-soft">Wir schauen uns Abläufe an, definieren das Zielbild und priorisieren den Nutzen.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="h-10 w-10 rounded-full bg-ink text-paper flex items-center justify-center text-sm font-semibold">2</div>
+                                <div>
+                                    <h3 class="font-semibold">Prototyp &amp; Feedback</h3>
+                                    <p class="text-sm text-ink-soft">Ein erster Prototyp zeigt früh, ob es im Alltag funktioniert.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="h-10 w-10 rounded-full bg-ink text-paper flex items-center justify-center text-sm font-semibold">3</div>
+                                <div>
+                                    <h3 class="font-semibold">Übergabe &amp; Pflege</h3>
+                                    <p class="text-sm text-ink-soft">Dokumentation, Schulung und verlässliche Wartung im laufenden Betrieb.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" class="py-16 lg:py-24 scroll-mt-24">
+                    <div class="relative overflow-hidden rounded-3xl bg-ink text-paper p-8 md:p-12 shadow-lift">
+                        <div class="pointer-events-none absolute -top-20 right-0 h-48 w-48 rounded-full bg-coral/30 blur-3xl"></div>
+                        <div class="pointer-events-none absolute -bottom-16 left-10 h-56 w-56 rounded-full bg-teal/30 blur-3xl"></div>
+                        <div class="relative z-10 space-y-6">
+                            <p class="text-xs uppercase tracking-[0.3em] text-paper/70">Kontakt</p>
+                            <h2 class="font-display text-3xl md:text-4xl">Lust auf pragmatische Digitalisierung?</h2>
+                            <p class="text-paper/80 max-w-2xl">
+                                Schreib mir kurz, was euch gerade bremst. Ich melde mich mit einer klaren Einschätzung, ob und wie ich unterstützen kann.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="mailto:hallo@tomten-digital.de" class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-paper text-ink font-semibold shadow-soft">
+                                    hallo@tomten-digital.de
+                                    <span class="material-symbols-outlined text-base">mail</span>
+                                </a>
+                                <button type="button" data-scroll="start" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-paper/40 text-paper font-semibold hover:bg-paper/10 transition">
+                                    Zurück nach oben
+                                    <span class="material-symbols-outlined text-base">north</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>
 
-        <!-- AI Consultant Modal -->
-        <div id="ai-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
-            <div class="bg-surface-dark border border-gray-700 w-full max-w-2xl h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
-                <div class="p-4 border-b border-gray-700 flex justify-between items-center bg-gray-800/50">
+        <footer class="border-t border-line/70 py-10">
+            <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-ink-soft">
+                <p>© 2024 TomTen. Digitale Lösungen mit leiser Wirkung.</p>
+                <div class="flex items-center gap-6">
+                    <a class="hover:text-ink transition" href="#">Impressum</a>
+                    <a class="hover:text-ink transition" href="#">Datenschutz</a>
+                </div>
+            </div>
+        </footer>
+
+        <div id="ai-modal" class="fixed inset-0 z-[60] hidden">
+            <div class="absolute inset-0 bg-ink/60 backdrop-blur-sm"></div>
+            <div class="relative mx-auto my-6 w-full max-w-2xl h-[80vh] rounded-3xl bg-paper border border-line shadow-lift flex flex-col overflow-hidden">
+                <div class="p-4 border-b border-line flex justify-between items-center bg-white/70">
                     <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-primary text-2xl">psychology</span>
-                        <div><h3 class="text-white font-bold text-sm">TomTen KI-Beratung</h3><p class="text-[10px] text-slate-med uppercase tracking-widest">Digital-Strategie</p></div>
+                        <span class="material-symbols-outlined text-coral text-2xl">psychology</span>
+                        <div>
+                            <h3 class="text-ink font-semibold text-sm">TomTen KI-Beratung</h3>
+                            <p class="text-[10px] text-ink-soft uppercase tracking-[0.3em]">Digital-Strategie</p>
+                        </div>
                     </div>
-                    <button id="close-ai" class="text-gray-400 hover:text-white transition-colors"><span class="material-symbols-outlined">close</span></button>
+                    <button id="close-ai" class="text-ink-soft hover:text-ink transition">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
                 </div>
-                <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-900/20">
-                    <div class="flex justify-start"><div class="max-w-[85%] p-3 rounded-2xl text-sm bg-gray-800 text-gray-200 rounded-tl-none border border-gray-700">Moin! Ich bin der KI-Berater von TomTen. Wie kann ich Ihrem Projekt helfen?</div></div>
+                <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-sand/40">
+                    <div class="flex justify-start">
+                        <div class="max-w-[85%] p-3 rounded-2xl text-sm bg-white text-ink rounded-tl-none border border-line shadow-soft">
+                            Moin! Ich bin der KI-Berater von TomTen. Wie kann ich Ihrem Projekt helfen?
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 border-t border-gray-700 bg-gray-800/30">
+                <div class="p-4 border-t border-line bg-white/80">
                     <div class="flex gap-2">
-                        <input id="chat-input" type="text" placeholder="Ihre Frage..." class="flex-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition-colors"/>
-                        <button id="send-btn" class="bg-primary text-white p-2 rounded-xl hover:bg-primary-dim transition-colors"><span class="material-symbols-outlined">send</span></button>
+                        <input id="chat-input" type="text" placeholder="Ihre Frage..." class="flex-1 bg-white border border-line rounded-full px-4 py-2 text-sm text-ink focus:outline-none focus:border-coral transition-colors"/>
+                        <button id="send-btn" class="bg-ink text-paper p-2 rounded-full hover:bg-ink-soft transition-colors">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Floating Action Button -->
-        <button id="open-ai" class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50">
+        <button id="open-ai" class="fixed bottom-6 right-6 w-14 h-14 bg-ink text-paper rounded-full shadow-lift flex items-center justify-center hover:bg-ink-soft transition z-50">
             <span class="material-symbols-outlined text-3xl">psychology_alt</span>
         </button>
     </div>
 
-    <!-- Main Logic -->
     <script type="module" src="index.js"></script>
-<script type="module" src="/index.tsx"></script>
 </body>
 </html>
