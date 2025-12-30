@@ -1,0 +1,54 @@
+{
+  "projects": [
+    {
+      "slug": "urlaubsrechner",
+      "title": "Urlaubsrechner",
+      "tagline": "Web-App zur Berechnung des individuellen Urlaubsanspruchs.",
+      "summary": "Berechnet anteiligen Urlaub nach Monaten und Arbeitstagen, berücksichtigt Zusatzurlaub und bleibt komplett offline nutzbar.",
+      "icon": "beach_access",
+      "features": [
+        "Eintritt/Austritt, Wechsel der Arbeitszeit und SBA-Zusatzurlaub.",
+        "Validierung mit klaren Hinweisen und nachvollziehbaren Ergebnissen.",
+        "UX mit direkter Ergebnisanzeige und schneller Neu-Berechnung."
+      ],
+      "pills": ["Offline / PWA", "HTML · JS · CSS"],
+      "labels": ["Local-first", "Datenschutz"],
+      "link": { "label": "Projekt ansehen", "href": "https://github.com/70m73n/urlaubsrechner" },
+      "galleryCount": 3,
+      "board": { "stage": "Phase 2", "highlight": "Tablet-Ansicht, klare Status-Workflows, barrierearme Steuerung." }
+    },
+    {
+      "slug": "reboard",
+      "title": "reBoard",
+      "tagline": "Berichts- und Fristenboard für KÜ-Enden & Entwicklungsberichte.",
+      "summary": "Kanban-Board für Klient:innen mit automatischer Fristenkette, Archiv, Import und lokalen JSON-Daten – komplett im Browser.",
+      "icon": "dashboard_customize",
+      "features": [
+        "Automatische Fristen inkl. Wochenendverschiebung und Warnungen.",
+        "Excel-Import, PDF-Export, Archiv mit Suche und Wiederherstellung.",
+        "Detailfenster mit Notizen, Mail-Helfer und Sofortspeicherung."
+      ],
+      "pills": ["Local-first", "HTML · JS · CSS"],
+      "labels": ["Prozessklarheit", "Kontrolle"],
+      "link": { "label": "Repo auf Anfrage", "href": null },
+      "galleryCount": 0
+    }
+  ],
+  "board": [
+    {
+      "title": "Schichtplaner Pro",
+      "stage": "Phase 2",
+      "highlight": "Tablet-Ansicht, klare Status-Workflows, barrierearme Steuerung."
+    },
+    {
+      "title": "Förderantrags-Assistent",
+      "stage": "Konzept",
+      "highlight": "Vorlagen, Validierung und ein sauberer Ablauf für Berichtswesen."
+    },
+    {
+      "title": "Wartung & Pflege",
+      "stage": "laufend",
+      "progress": 0.72
+    }
+  ]
+}
