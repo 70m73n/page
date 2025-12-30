@@ -24,7 +24,7 @@ const galleryOverlay = galleryModal?.querySelector('.absolute.inset-0');
 
 // State Management
 let messageHistory = [];
-let galleryState = { slug: null, index: 0, total: 0, title: '' };
+let galleryState = { images: [], index: 0, title: '' };
 
 // Navigation Logic
 navButtons.forEach(btn => {
@@ -53,12 +53,40 @@ const attachImageFallback = (imgEl, fallbackEl) => {
     });
 };
 
+const imageExists = (src) => new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = `${src}?cb=${Date.now()}`;
+});
+
+const buildImageList = async (slug, maxCount) => {
+    const count = Math.max(0, maxCount || 0);
+    const paths = [];
+    for (let i = 0; i < count; i += 1) {
+        const candidate = galleryPath(slug, i);
+        // eslint-disable-next-line no-await-in-loop
+        const exists = await imageExists(candidate);
+        if (exists) paths.push(candidate);
+    }
+    return paths;
+};
+
 const updateGalleryImage = () => {
     if (!galleryModal || !galleryImage) return;
-    const { slug, index, total, title } = galleryState;
-    if (!slug || total < 1) return;
+    const { images, index, title } = galleryState;
 
-    const src = galleryPath(slug, index);
+    if (!images.length) {
+        galleryImage.src = '';
+        galleryFallback?.classList.remove('hidden');
+        if (galleryCounter) galleryCounter.textContent = '0/0';
+        if (galleryCaption) galleryCaption.textContent = 'Keine Bilder gefunden.';
+        if (galleryTitle) galleryTitle.textContent = title || 'Projekt';
+        return;
+    }
+
+    galleryFallback?.classList.add('hidden');
+    const src = images[index];
     galleryImage.src = src;
     galleryImage.alt = `Bild ${index + 1} – ${title || 'Projekt'}`;
     galleryImage.onload = () => galleryFallback?.classList.add('hidden');
@@ -66,14 +94,21 @@ const updateGalleryImage = () => {
 
     if (galleryTitle) galleryTitle.textContent = title || 'Projekt';
     if (galleryCaption) galleryCaption.textContent = index === 0 ? 'Cover' : `Ansicht ${index}`;
-    if (galleryCounter) galleryCounter.textContent = `${index + 1}/${total}`;
+    if (galleryCounter) galleryCounter.textContent = `${index + 1}/${images.length}`;
 };
 
-const openGallery = (slug, total, title) => {
-    if (!galleryModal || total < 1) return;
-    galleryState = { slug, index: 0, total, title };
+const openGallery = async (project) => {
+    if (!galleryModal || !(project?.galleryCount > 0)) return;
+    galleryState = { images: [], index: 0, title: project.title || 'Projekt' };
     galleryModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    if (galleryTitle) galleryTitle.textContent = project.title || 'Projekt';
+    if (galleryCaption) galleryCaption.textContent = 'Galerie wird geladen …';
+    if (galleryCounter) galleryCounter.textContent = '';
+    galleryFallback?.classList.remove('hidden');
+
+    const images = await buildImageList(project.slug, project.galleryCount || 0);
+    galleryState = { images, index: 0, title: project.title || 'Projekt' };
     updateGalleryImage();
 };
 
@@ -81,14 +116,14 @@ const closeGallery = () => {
     if (!galleryModal) return;
     galleryModal.classList.add('hidden');
     document.body.style.overflow = '';
-    galleryState = { slug: null, index: 0, total: 0, title: '' };
+    galleryState = { images: [], index: 0, title: '' };
 };
 
 const shiftGallery = (delta) => {
-    if (!galleryState.total) return;
+    if (!galleryState.images.length) return;
     galleryState = {
         ...galleryState,
-        index: (galleryState.index + delta + galleryState.total) % galleryState.total,
+        index: (galleryState.index + delta + galleryState.images.length) % galleryState.images.length,
     };
     updateGalleryImage();
 };
@@ -169,7 +204,7 @@ const createProjectCard = (project) => {
         const button = document.createElement('button');
         button.type = "button";
         button.className = "group block h-full w-full";
-        button.addEventListener('click', () => openGallery(project.slug, project.galleryCount || 0, project.title));
+        button.addEventListener('click', () => openGallery(project));
         button.setAttribute('aria-label', `Galerie öffnen für ${project.title}`);
 
         const img = document.createElement('img');
@@ -222,17 +257,13 @@ const renderProjects = (projects) => {
     });
 };
 
-const renderBoard = (projects, boardExtras) => {
+const renderBoard = (projects) => {
     if (!boardContainer) return;
     boardContainer.innerHTML = '';
 
-    const items = [];
-    if (Array.isArray(boardExtras)) items.push(...boardExtras);
-    (projects || []).forEach((project) => {
-        if (project.board) {
-            items.push({ ...project.board, title: project.title });
-        }
-    });
+    const items = (projects || [])
+        .filter((project) => project.board)
+        .map((project) => ({ ...project.board, title: project.title }));
 
     if (!items.length) {
         boardContainer.innerHTML = '<p class="text-sm text-ink-soft">Keine Projekte im Board.</p>';
@@ -288,7 +319,7 @@ const loadProjectData = async () => {
         if (!response.ok) throw new Error(`Status ${response.status}`);
         const data = await response.json();
         renderProjects(data.projects || []);
-        renderBoard(data.projects || [], data.board || []);
+        renderBoard(data.projects || []);
     } catch (error) {
         console.error('Projektladefehler:', error);
         if (portfolioGrid) portfolioGrid.innerHTML = '<p class="text-sm text-ink-soft">Konnte Projekte nicht laden.</p>';

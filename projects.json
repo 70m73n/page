@@ -31,24 +31,25 @@
       "pills": ["Local-first", "HTML · JS · CSS"],
       "labels": ["Prozessklarheit", "Kontrolle"],
       "link": { "label": "Repo auf Anfrage", "href": null },
-      "galleryCount": 0
-    }
-  ],
-  "board": [
-    {
-      "title": "Schichtplaner Pro",
-      "stage": "Phase 2",
-      "highlight": "Tablet-Ansicht, klare Status-Workflows, barrierearme Steuerung."
+      "galleryCount": 0,
+      "board": { "stage": "closed", "highlight": "App ist einsatzbereit." }
     },
     {
-      "title": "Förderantrags-Assistent",
-      "stage": "Konzept",
-      "highlight": "Vorlagen, Validierung und ein sauberer Ablauf für Berichtswesen."
-    },
-    {
-      "title": "Wartung & Pflege",
-      "stage": "laufend",
-      "progress": 0.72
+      "slug": "LernKompass",
+      "title": "LernKompass",
+      "tagline": "Lehrmaterial für Teilnehmer aus dem BBB erstellen",
+      "summary": "Erstellt mithilfe von KI Lehrmatierialen",
+      "icon": "dashboard_customize",
+      "features": [
+        "Automatische Fristen inkl. Wochenendverschiebung und Warnungen.",
+        "Excel-Import, PDF-Export, Archiv mit Suche und Wiederherstellung.",
+        "Detailfenster mit Notizen, Mail-Helfer und Sofortspeicherung."
+      ],
+      "pills": ["Local-first", "HTML · JS · CSS"],
+      "labels": ["Prozessklarheit", "Kontrolle"],
+      "link": { "label": "Repo auf Anfrage", "href": null },
+      "galleryCount": 0,
+      "board": { "stage": "Konzept", "highlight": "Board-Ansicht und Fristenlogik in Arbeit." }
     }
   ]
 }
