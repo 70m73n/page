@@ -57,8 +57,9 @@ navButtons.forEach(btn => {
 });
 
 // Project Data & Rendering
-const coverPath = (slug) => `projects/${slug}/cover.png`;
-const galleryPath = (slug, index) => index === 0 ? coverPath(slug) : `projects/${slug}/${index}.png`;
+const assetPath = (path) => new URL(path, import.meta.url).toString();
+const coverPath = (slug) => assetPath(`./projects/${slug}/cover.png`);
+const galleryPath = (slug, index) => index === 0 ? coverPath(slug) : assetPath(`./projects/${slug}/${index}.png`);
 
 const attachImageFallback = (imgEl, fallbackEl) => {
     if (!imgEl || !fallbackEl) return;
@@ -334,7 +335,7 @@ const renderBoard = (projects) => {
 const loadProjectData = async () => {
     if (!portfolioGrid && !boardContainer) return;
     try {
-        const response = await fetch('projects.json');
+        const response = await fetch(assetPath('./projects.json'));
         if (!response.ok) throw new Error(`Status ${response.status}`);
         const data = await response.json();
         renderProjects(data.projects || []);
