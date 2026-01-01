@@ -75,13 +75,6 @@
             }
         }
     </style>
-    <script type="importmap">
-    {
-      "imports": {
-        "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
-      }
-    }
-    </script>
 </head>
 <body class="bg-paper text-ink font-sans antialiased selection:bg-coral/20 selection:text-ink">
     <div class="relative min-h-screen overflow-hidden">
@@ -91,7 +84,7 @@
         <div class="pointer-events-none absolute bottom-0 right-[-10%] h-80 w-80 rounded-full bg-sun/30 blur-3xl"></div>
 
         <header class="sticky top-0 z-40 border-b border-line/70 bg-paper/80 backdrop-blur">
-            <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6 relative">
                 <div class="flex items-center gap-3">
                     <div class="h-11 w-11 rounded-2xl bg-transparent text-paper flex items-center justify-center overflow-hidden shadow-soft">
                         <img src="logo.png" alt="TomTen Logo" class="h-8 w-8 object-contain"/>
@@ -113,8 +106,19 @@
                         Projekt anfragen
                         <span class="material-symbols-outlined text-base">arrow_forward</span>
                     </button>
-                    <button type="button" class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-full border border-line text-ink hover:bg-white/70 transition">
+                    <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-full border border-line text-ink hover:bg-white/70 transition">
                         <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+                <div id="mobile-menu" class="lg:hidden hidden absolute left-0 right-0 top-full mt-3 bg-paper/95 border border-line rounded-2xl shadow-soft p-4 space-y-2">
+                    <button type="button" data-scroll="start" class="w-full text-left px-4 py-2 rounded-xl hover:bg-white/80 transition text-sm font-semibold text-ink">Start</button>
+                    <button type="button" data-scroll="about" class="w-full text-left px-4 py-2 rounded-xl hover:bg-white/80 transition text-sm font-semibold text-ink">Über TomTen</button>
+                    <button type="button" data-scroll="services" class="w-full text-left px-4 py-2 rounded-xl hover:bg-white/80 transition text-sm font-semibold text-ink">Leistungen</button>
+                    <button type="button" data-scroll="portfolio" class="w-full text-left px-4 py-2 rounded-xl hover:bg-white/80 transition text-sm font-semibold text-ink">Projekte</button>
+                    <button type="button" data-scroll="contact" class="w-full text-left px-4 py-2 rounded-xl hover:bg-white/80 transition text-sm font-semibold text-ink">Kontakt</button>
+                    <button type="button" data-scroll="contact" class="w-full text-left px-4 py-3 rounded-xl bg-ink text-paper text-sm font-semibold shadow-soft hover:bg-ink-soft transition flex items-center justify-between">
+                        Projekt anfragen
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
                     </button>
                 </div>
             </div>
@@ -398,42 +402,6 @@
             </div>
         </div>
 
-        <div id="ai-modal" class="fixed inset-0 z-[60] hidden">
-            <div class="absolute inset-0 bg-ink/60 backdrop-blur-sm"></div>
-            <div class="relative mx-auto my-6 w-full max-w-2xl h-[80vh] rounded-3xl bg-paper border border-line shadow-lift flex flex-col overflow-hidden">
-                <div class="p-4 border-b border-line flex justify-between items-center bg-white/70">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-coral text-2xl">psychology</span>
-                        <div>
-                            <h3 class="text-ink font-semibold text-sm">TomTen KI-Beratung</h3>
-                            <p class="text-[10px] text-ink-soft uppercase tracking-[0.3em]">Digital-Strategie</p>
-                        </div>
-                    </div>
-                    <button id="close-ai" class="text-ink-soft hover:text-ink transition">
-                        <span class="material-symbols-outlined">close</span>
-                    </button>
-                </div>
-                <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-sand/40">
-                    <div class="flex justify-start">
-                        <div class="max-w-[85%] p-3 rounded-2xl text-sm bg-white text-ink rounded-tl-none border border-line shadow-soft">
-                            Moin! Ich bin der KI-Berater von TomTen. Wie kann ich Ihrem Projekt helfen?
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4 border-t border-line bg-white/80">
-                    <div class="flex gap-2">
-                        <input id="chat-input" type="text" placeholder="Ihre Frage..." class="flex-1 bg-white border border-line rounded-full px-4 py-2 text-sm text-ink focus:outline-none focus:border-coral transition-colors"/>
-                        <button id="send-btn" class="bg-ink text-paper p-2 rounded-full hover:bg-ink-soft transition-colors">
-                            <span class="material-symbols-outlined">send</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button id="open-ai" class="fixed bottom-6 right-6 w-14 h-14 bg-ink text-paper rounded-full shadow-lift flex items-center justify-center hover:bg-ink-soft transition z-50">
-            <span class="material-symbols-outlined text-3xl">psychology_alt</span>
-        </button>
     </div>
 
     <script type="module" src="index.js"></script>
